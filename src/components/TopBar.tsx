@@ -34,7 +34,7 @@ export const TopBar = () => {
   ];
   return (
     <div>
-      <div className="flex items-center gap-x-20 px-[20px] py-10">
+      <div className="flex items-center gap-x-20 px-10 py-6 mx-0 2xl:mx-[200px] transition-all duration-300 ease-in-out">
         <div className="flex gap-x-2">
           <img src={logo} alt="logo" />
           <p className="text-2xl font-bold ">fleet</p>
