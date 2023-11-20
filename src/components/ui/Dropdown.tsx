@@ -1,15 +1,26 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { gsap } from "gsap";
+
 type Props = {
-  type: "notification" | "normal" | "quantity";
+  className?: string;
+  prevIcon?: string;
+  afterIcon?: string;
   label?: string;
   labelColor?: string;
   children?: React.ReactNode;
 };
 
-export const Dropdown = ({ type, children, label, labelColor }: Props) => {
+export const Dropdown = ({
+  className,
+  children,
+  label,
+  labelColor,
+  prevIcon,
+  afterIcon,
+}: Props) => {
   const [isShow, setIsShow] = useState(false);
   const show = useRef(null);
   const dropdown = useRef(null);
@@ -31,24 +42,25 @@ export const Dropdown = ({ type, children, label, labelColor }: Props) => {
   }, [isShow]);
   return (
     <div
-      className={`relative text-[${labelColor}] hover:!text-[#23262F] transition-hover duration-300 ease-in-out cursor-pointer`}
+      className={`${className} relative text-[${labelColor}] hover:!text-[#23262F] transition-hover duration-300 ease-in-out cursor-pointer`}
       onClick={handle}
       ref={show}
     >
-      {type === "normal" && (
-        <div className="flex items-center gap-x-2">
-          <div className="font-bold">{label}</div>
+      <div className="flex items-center gap-x-2">
+        {prevIcon && <FontAwesomeIcon icon={`${prevIcon}` as IconProp} />}
+        <div className="font-bold">{label}</div>
+        {afterIcon && (
           <FontAwesomeIcon
-            icon="chevron-down"
+            icon={`${afterIcon}` as IconProp}
             className={`${
               isShow ? "rotate-180" : "rotate-0"
             } transition-rotate duration-300 ease-in-out `}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       <div
-        className="absolute top-[30px] left-0 shadow-normal p-4 rounded-2xl transition duration-300 ease-in-out opacity-0"
+        className="absolute top-[calc(100%+20px)] left-0 shadow-normal p-4 rounded-2xl transition duration-300 ease-in-out opacity-0"
         ref={dropdown}
       >
         {children}

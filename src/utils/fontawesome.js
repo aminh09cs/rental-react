@@ -5,6 +5,14 @@ import {
   faHouseChimney,
   faPlaneDeparture,
   faCar,
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faChevronDown, faEnvelope, faHouseChimney, faPlaneDeparture, faCar);
+library.add(
+  faChevronDown,
+  faEnvelope,
+  faHouseChimney,
+  faPlaneDeparture,
+  faCar,
+  faGlobe
+);
