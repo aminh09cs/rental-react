@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        normal: "0 35px 60px -15px rgba(0, 0, 0, 1)",
+        normal: "0 35px 60px -15px rgba(0, 0, 0, 0.15)",
+        "normal-cover": "0px 0px 11px 4px rgba(0, 0, 0, 0.15)",
       },
     },
   },

@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useModal } from "../hooks/useModal";
+import { SignIn } from "../components/modals/SignIn";
 import {
   useLocation,
   useNavigate,
@@ -40,10 +42,14 @@ export const TopBar = () => {
       icon: <FontAwesomeIcon icon="car" className="w-5" />,
     },
   ];
+  //add sign in
+  const isOpen = useModal((state) => state.isOpen);
+  const onOpen = useModal((state) => state.onOpen);
+  const onClose = useModal((state) => state.onClose);
 
   return (
     <div>
-      <div className="flex justify-between items-center w-full px-10 py-6 md:px-20 lg:px-40 transition-all duration-300 ease-in-out">
+      <div className="flex justify-between items-center w-full px-8 py-6 lg:px-20 transition-all duration-300 ease-in-out">
         <div className="flex items-center gap-x-10">
           <div className="flex gap-x-2">
             <img src={logo} alt="logo" />
@@ -78,7 +84,7 @@ export const TopBar = () => {
         </div>
         <div className="flex items-center gap-x-10 ">
           <p
-            className="text-[#777E90] hover:!text-[#23262F] font-bold transition-hover duration-300 ease-in-out cursor-pointer hidden md:block"
+            className="text-[#777E90] hover:!text-[#23262F] font-bold transition-hover duration-300 ease-in-out cursor-pointer hidden lg:block"
             onClick={() => navigate("/support")}
           >
             Support
@@ -91,9 +97,15 @@ export const TopBar = () => {
           >
             You can't choose another language
           </Dropdown>
-          <Button label="List your property" />
+          <Button label="List your property" className="hidden md:block" />
+          <FontAwesomeIcon
+            icon={["far", "user"]}
+            className="w-5 h-5 p-2  border bg-[#58C27D] text-white rounded-[50%] cursor-pointer"
+            onClick={() => onOpen()}
+          />
         </div>
       </div>
+      <SignIn isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };

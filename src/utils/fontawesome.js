@@ -6,7 +6,9 @@ import {
   faPlaneDeparture,
   faCar,
   faGlobe,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faChevronDown,
@@ -14,5 +16,7 @@ library.add(
   faHouseChimney,
   faPlaneDeparture,
   faCar,
-  faGlobe
+  faGlobe,
+  faUser,
+  faXmark
 );
